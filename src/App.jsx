@@ -14,12 +14,22 @@ function App() {
       <h1>Raul Teles</h1>
       <h1>William</h1>
 
-      <Logo variant="outline" color="roxo" size="md">
+      <Logo variant="outline" color="claro" size="md">
         <Logo.Icon />
         <Logo.Text />
       </Logo>
 
-      <Logo variant="filled" color="escuro" size="lg">
+      <Logo variant="filled" color="roxo" size="md">
+        <Logo.Icon />
+        <Logo.Text />
+      </Logo>
+
+      <Logo variant="outline" color="claro" size="lg">
+        <Logo.Icon />
+        {/* <Logo.Text /> */}
+      </Logo>
+
+      <Logo variant="filled" color="roxo" size="lg">
         <Logo.Icon />
         <Logo.Text />
       </Logo>
