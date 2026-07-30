@@ -7,7 +7,7 @@ function LoginPage() {
   return (
     <>
       <main className="flex h-screen">
-        <section className="flex-1 flex flex-col bg-[#7C3AED] p-10 gap-8">
+        <section className="hidden md:flex flex-1 flex-col bg-[#7C3AED] p-10 gap-8">
           <div className="flex gap-4 items-center text-[#EDE0FF] mt-1">
             <img
               className="bg-[#EDE0FF] border rounded-md p-2"
