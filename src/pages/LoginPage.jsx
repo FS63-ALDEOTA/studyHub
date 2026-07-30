@@ -34,11 +34,30 @@ function LoginPage() {
           </div>
         </section>
 
-        <section className="flex-1 flex items-center bg-[#F9F9FF] justify-center">
+        <section className="flex-1 flex flex-col bg-[#F9F9FF] justify-center p-6">
+
+          <div className="flex md:hidden gap-4 items-center text-[#7C3AED] mt-1">
+            <img
+              className="bg-[#7C3AED] border rounded-md p-2"
+              src={Logo}
+              alt="Logo"
+            />
+
+            <h1 className="text-base text-[#7C3AED]">StudyHub</h1>
+          </div>
           <div className="w-full max-w-sm flex flex-col gap-2">
+            <div className="block md:hidden text-center">
+              <h2 className="text-xl text-[#111C2D]">Aprenda no seu ritmo</h2>
+              <p className=" text-[#4A4455]">
+                {" "}
+                Sua Jornada para o conhecimento começa aqui.
+              </p>
+            </div>
             <div className="flex flex-col gap-1">
               <h2>Entrar na sua conta</h2>
-              <p>Bem-vindo de volta! Por favor, insira suas dados.</p>
+              <p className="hidden md:flex">
+                Bem-vindo de volta! Por favor, insira suas dados.
+              </p>
             </div>
 
             <form className="flex flex-col gap-4 mt-4">
