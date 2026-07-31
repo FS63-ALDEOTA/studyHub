@@ -1,7 +1,8 @@
-import Logo from "../assets/Logo-Login.svg";
+
 import Imagem from "../assets/Imagem-Login.jpg";
 import iconeEmail from "../assets/icone-email.svg";
 import iconeSenha from "../assets/icone-senha.svg";
+import { Logo } from "../components/Logo";
 
 function LoginPage() {
   return (
@@ -9,12 +10,10 @@ function LoginPage() {
       <main className="flex h-screen">
         <section className="hidden md:flex flex-1 flex-col bg-[#7C3AED] p-10 gap-8">
           <div className="flex gap-4 items-center text-[#EDE0FF] mt-1">
-            <img
-              className="bg-[#EDE0FF] border rounded-md p-2"
-              src={Logo}
-              alt="Logo"
-            />
-            <h1 className="text-base">StudyHub</h1>
+            <Logo variant="outline" color="escuro" size="md">
+              <Logo.Icon />
+              <Logo.Text />
+            </Logo>
           </div>
 
           <div className="flex flex-col gap-4 max-w-md mt-10">
@@ -37,13 +36,11 @@ function LoginPage() {
         <section className="flex-1 flex flex-col bg-[#F9F9FF] justify-center p-6">
 
           <div className="flex md:hidden gap-4 items-center text-[#7C3AED] mt-1">
-            <img
-              className="bg-[#7C3AED] border rounded-md p-2"
-              src={Logo}
-              alt="Logo"
-            />
 
-            <h1 className="text-base text-[#7C3AED]">StudyHub</h1>
+            <Logo variant="filled" color="roxo" size="md">
+              <Logo.Icon />
+              <Logo.Text />
+            </Logo>
           </div>
           <div className="w-full max-w-sm flex flex-col gap-2">
             <div className="block md:hidden text-center">

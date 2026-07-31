@@ -1,14 +1,12 @@
-import InputSearch from "./InputSeacher"
+import InputSearch from "./InputSearch"
 import { BellRing } from "lucide-react";
 import { CircleQuestionMark } from "lucide-react"
-import perfil from "./assets/perfil.jpg"
-
+import perfil from "../assets/perfil.jpg"
 const Header = () => {
     return (
         <>
-
-                <div className="bg-[#F9F9FFCC] flex justify-between flex-1 p-4">
-                    <div className="flex ">
+                <header className="bg-[#F9F9FFCC] flex justify-between flex-1 p-4 sticky top-0 ml-[15%]">
+                    <div className="flex">
                         <h1 className="text-xl font-bold text-[#630ED4] mr-24">Minhas atividades</h1>
                         <InputSearch />
                     </div>
@@ -22,7 +20,7 @@ const Header = () => {
                             </div>
                         </div>
                     </div>
-                </div>
+                </header>
 
         </>
     )

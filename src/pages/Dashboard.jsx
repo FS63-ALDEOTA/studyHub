@@ -1,8 +1,13 @@
+import { Outlet } from "react-router-dom"
+import Header from "../components/Header"
+import SideBar from "../components/SideBar"
 
 const Dashboard = () => {
   return (
     <>
-    <h1>Dashboard</h1>      
+    <Header/>
+    <SideBar/>
+    <Outlet/>
     </>
   )
 }

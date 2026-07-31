@@ -1,20 +1,20 @@
 import { createContext,useContext } from 'react';
 
-import LogoIcon_Outline from '../../assets/logos/capelo_outline.svg?react';
-import LogoIcon_Filled from "../../assets/logos/capelo_filled.svg?react";
+import LogoIcon_Outline from '../assets/logos/capelo_outline.svg?react';
+import LogoIcon_Filled from "../assets/logos/capelo_filled.svg?react";
 
 const LogoPropriedades = createContext(null);
 
 export function Logo({children, variant = "outline", color = "roxo", size = "md", className = "",}) {
-  const bgColors = {
-    roxo: "bg-purple-600 text-white",
-    escuro: "bg-gray-900 text-white",
-    claro: "bg-white text-purple-600",
-  };
+  // const bgColors = {
+  //   roxo: "bg-purple-600 text-white",
+  //   escuro: "bg-gray-900 text-white",
+  //   claro: "bg-white text-purple-600",
+  // };
 
 
 return (
-       <LogoPropriedades.Provider value={{ variant, color, size }}>
+      <LogoPropriedades.Provider value={{ variant, color, size }}>
         {/* <div className={`flex items-center gap-3 font-sans select-none p-4 rounded-xl ${bgColors[color] || ''} ${className}`}> */}
       <div className={`flex items-center gap-3 font-sans select-none p-4  ${className}`}>
         {children}
@@ -36,7 +36,7 @@ Logo.Icon = function LogoIconComponent({className=''}) {
 
     const iconColors = {
       roxo: "text-white",
-      escuro: "text-white",
+      escuro: "text-purple-600",
       claro: "text-purple-600",
     };
 
@@ -79,7 +79,7 @@ Logo.Text = function LogoTextComponent({ className = "" }) {
   };
 
  
-  const fontWeight = variant === "outline" ? "font-medium" : "font-bold";
+  const fontWeight = variant === "outline" ? "font-light" : "font-bold";
 
   return (
     <span
