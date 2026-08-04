@@ -26,40 +26,41 @@ function RegisterPage(){
                 <span className='text-[12px] text-[#7B7487]'>© 2024 StudyHub Academic Clarity. Todos os direitos reservados.</span>
             </section>
             <section className='px-[149.33px] py-[247.5px] bg-[#F9F9FF]'>
-                <h1 className='text-3xl font-bold'>Crie sua conta</h1>
+                <h1 className='text-3xl font-bold mb-2'>Crie sua conta</h1>
                 <span className='text-[16px] text-[#4A4455]'>Junte-se a milhares de estudantes de alto desempenho.</span>
-                <div>
+                <div className='mt-8'>
                     <h1 className='text-[#4A4455] text-[14px] mb-2'>Nome completo</h1>
                     <div className='flex flex-row h-12.25 w-md bg-white border border-[#CCC3D8] rounded-xl'>
-                        <UserIcon size={16} color="#7b7487" className='mr-2 mt-4'/>
+                        <UserIcon size={16} color="#7b7487" className='mr-2 mt-4 ml-4'/>
                         <input type="name" placeholder='Ex.: Ana Silva' className='w-full rounded-xl'/>
                     </div>
                 </div>
-                <div>
+                <div className='my-6'>
                     <h1 className='text-[#4A4455] text-[14px] mb-2'>E-mail institucional ou pessoal</h1>
                     <div className='flex flex-row h-12.25 w-md bg-white border border-[#CCC3D8] rounded-xl'>
-                        <EnvelopeIcon size={16} color="#7b7487"  className='mr-2 mt-[16.1px]'/>
+                        <EnvelopeIcon size={16} color="#7b7487" className='mr-2 mt-[16.1px] ml-4'/>
                         <input type="email" placeholder='nome@exemplo.edu' className='w-full rounded-xl'/>
                     </div>
                 </div>
                 <div className='flex flex-row mt-6'>
-                    <div>
-                        <h1>Senha</h1>
-                        <div className='flex flex-row'>
-                            <LockIcon size={16} color="#7b7487" />
-                            <input type="password" placeholder='••••••••'/>
+                    <div className='mr-4'>
+                        <h1 className='text-[#4a4455] text-[14px] mb-2'>Senha</h1>
+                        <div className='flex flex-row bg-white border border-[#CCC3D8] rounded-xl h-12.25 w-54'>
+                            <LockIcon size={16} color="#7b7487" className='mr-2 mt-[16.1px] ml-4'/>
+                            <input type="password" placeholder='••••••••' className='w-full rounded-xl'/>
                         </div>
                     </div>
                     <div>
-                        <h1>Confirmar senha</h1>
-                        <div className='flex flex-row'>
-                            <img src={Senha} alt="" />
-                            <input type="password" placeholder='••••••••'/>
+                        <h1 className='text-[#4a4455] text-[14px] mb-2'>Confirmar senha</h1>
+                        <div className='flex flex-row bg-white border border-[#CCC3D8] rounded-xl h-12.25 w-54'>
+                            <img src={Senha} alt="" className='w-5 h-5 mr-2 ml-4 mt-3.5'/>
+                            <input type="password" placeholder='••••••••' className='w-full rounded-xl'/>
                         </div>
                     </div>
                 </div>
+                <button className='text-white bg-primary mt-6 w-md h-15 text-[20px] font-semibold rounded-xl shadow-xl'>Criar conta</button>
+                <p className='flex justify-center mt-10 text-[16px]'>Já possui uma conta?<span className='text-primary ml-1'>Entrar</span></p>
             </section>
-            
         </main>
         </>
     )
