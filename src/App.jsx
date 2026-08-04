@@ -1,6 +1,7 @@
 import './App.css'
 import { Logo } from './components/Logo/Logo'
 import SideBar from './components/SideBar'
+import RegisterPage from './pages/RegisterPage'
 
 function App() {
 
@@ -26,6 +27,7 @@ function App() {
         <Logo.Text />
       </Logo>
       <SideBar/>
+      <RegisterPage/>
     </>
   );
 }
