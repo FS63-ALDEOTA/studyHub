@@ -8,7 +8,7 @@ function LoginPage() {
   return (
     <>
       <main className="flex h-screen">
-        <section className="hidden md:flex flex-1 flex-col bg-[#7C3AED] p-10 gap-8">
+        <section className="hidden md:flex flex-1 flex-col bg-secondary p-10 gap-8">
           <div className="flex gap-4 items-center text-[#EDE0FF] mt-1">
             <Logo variant="outline" color="escuro" size="md">
               <Logo.Icon />
@@ -35,14 +35,14 @@ function LoginPage() {
 
         <section className="flex-1 flex flex-col bg-[#F9F9FF] justify-center p-6">
 
-          <div className="flex md:hidden gap-4 items-center text-[#7C3AED] mt-1">
+          <div className="flex md:hidden gap-4 items-center text-secondary mt-1">
 
             <Logo variant="filled" color="roxo" size="md">
               <Logo.Icon />
               <Logo.Text />
             </Logo>
           </div>
-          <div className="w-full max-w-sm flex flex-col gap-2">
+          <div className="w-full max-w-sm flex items-center flex-col gap-2">
             <div className="block md:hidden text-center">
               <h2 className="text-xl text-[#111C2D]">Aprenda no seu ritmo</h2>
               <p className=" text-[#4A4455]">
