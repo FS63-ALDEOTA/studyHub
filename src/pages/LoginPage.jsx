@@ -33,7 +33,7 @@ function LoginPage() {
           </div>
         </section>
 
-        <section className="flex-1 flex flex-col bg-[#F9F9FF] justify-center p-6">
+        <section className="flex-1 flex flex-col bg-[#F9F9FF] justify-center p-6 items-center">
 
           <div className="flex md:hidden gap-4 items-center text-secondary mt-1">
 
@@ -42,7 +42,7 @@ function LoginPage() {
               <Logo.Text />
             </Logo>
           </div>
-          <div className="w-full max-w-sm flex items-center flex-col gap-2">
+          <div className="w-full max-w-sm flex flex-col gap-2">
             <div className="block md:hidden text-center">
               <h2 className="text-xl text-[#111C2D]">Aprenda no seu ritmo</h2>
               <p className=" text-[#4A4455]">
@@ -90,13 +90,13 @@ function LoginPage() {
                   <label htmlFor="lembrar">Lembrar de mim</label>
                 </div>
 
-                <a className="text-[#630ED4] hover:underline" href="#">
+                <a className="text-primary hover:underline" href="#">
                   Esqueci minha senha
                 </a>
               </div>
 
               <button
-                className="bg-[#630ED4] text-[#F9F9FF] hover:bg-[#510CB0] py-3 px-4 rounded-xl"
+                className="bg-primary text-[#F9F9FF] hover:bg-[#510CB0] py-3 px-4 rounded-xl"
                 type="submit"
               >
                 Entrar
@@ -105,7 +105,7 @@ function LoginPage() {
 
             <p className="text-center mt-4">
               Não tem uma conta?
-              <a className="text-[#630ED4] hover:underline" href="#">
+              <a className="text-primary hover:underline" href="#">
                 Criar conta
               </a>
             </p>
