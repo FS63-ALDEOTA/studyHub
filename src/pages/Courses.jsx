@@ -1,8 +1,11 @@
-
+import { Link } from "react-router-dom"
 const Courses = () => {
   return (
     <div>
-      <h1>Meus cursos</h1>
+      <Link className="">Visão Geral</Link>
+      <Link className="">Materiais</Link>
+      <Link className="">Conteúdo</Link>
+      <Link className="">Avaliações</Link>
     </div>
   )
 }
