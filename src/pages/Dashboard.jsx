@@ -7,7 +7,9 @@ const Dashboard = () => {
     <>
     <Header/>
     <SideBar/>
-    <Outlet/>
+      <div className="ml-[15%]">
+      <Outlet/>
+    </div>
     </>
   )
 }
