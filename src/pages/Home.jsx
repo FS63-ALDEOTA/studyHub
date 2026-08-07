@@ -1,8 +1,14 @@
+import SummaryCard from "../components/SummaryCard.jsx"
+
 
 const Home = () => {
   return (
-    <div >
+    <div>
       <h1>Página inicial</h1>
+
+
+        <SummaryCard/>
+
     </div>
   )
 }
