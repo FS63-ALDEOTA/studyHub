@@ -6,7 +6,7 @@ function AsideCourseContent() {
             <h1 className="font-semibold text-[20px]">Conteúdo do Curso</h1>
             <div>
                 <div className="flex justify-between">
-                    <span>Progresso</span>
+                    <span className="">Progresso</span>
                     <span>45% concluído</span>
                 </div>
                 <progress id="file" value="45" max="100" className=""> 32% </progress>
