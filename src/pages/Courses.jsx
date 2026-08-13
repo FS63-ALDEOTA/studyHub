@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 
 import Banner from "../components/Banner";
+import AsideCourseContent from "../components/AsideCourseContent"
 
 const Courses = () => {
   const [cursosDoUsuario, setCursosDoUsuario] = useState([]);
@@ -56,6 +57,7 @@ const Courses = () => {
       <h1>Meus cursos</h1>
    
       <Banner dados={cursosDoUsuario[1]} />
+      <AsideCourseContent/>
     </div>
   );
 };
