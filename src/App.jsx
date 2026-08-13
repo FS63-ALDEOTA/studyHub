@@ -10,6 +10,7 @@ import Configurations from "./pages/Configurations";
 import Favorites from "./pages/Favorites";
 import User from "./pages/User";
 import Home from "./pages/Home";
+import Testes from "./pages/Testes";
 
 function App() {
 
@@ -27,6 +28,7 @@ function App() {
           <Route path="/perfil" element={<User/>} /> 
           <Route path="/favoritos" element={<Favorites/>} /> 
           <Route path="/configuracoes" element={<Configurations/>} />
+          <Route path="/teste" element={<Testes/>} />
         </Route> 
       </Routes>
     </BrowserRouter>
