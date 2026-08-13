@@ -1,4 +1,4 @@
-import bgImage from "../assets/banner-bgs/react-do-zero.jpg";
+// import bgImage from "../assets/banner-bgs/react-do-zero.jpg";
 
 const Banner = ({ dados }) => {
   if (!dados) {
@@ -11,6 +11,8 @@ const Banner = ({ dados }) => {
     `../assets/banner-bgs/${nomeDoArquivo}`,
     import.meta.url,
   ).href;
+
+  const professorAvatar = new URL(`../assets/Prof_avatar/Prof_01.png`, import.meta.url,).href
 
   return (
     <>
@@ -32,14 +34,22 @@ const Banner = ({ dados }) => {
             ))}
           </div>
 
-          <div className="text-white font-bold text-5xl mt-5">
+          <div className="text-white font-bold text-5xl py-10">
             <h1>{dados.nome} </h1>
           </div>
 
           <div className="flex">
-            <div className="bg-amber-50 rounded-e-full"></div>
-            <p className="bg-amber-50 rounded-e-full">v</p>
-            
+            {/* <div className="bg-amber-50 rounded-e-full"></div>
+            <p className="bg-amber-50 rounded-e-full">v</p> */}
+
+            <div>
+              <img
+                src={professorAvatar}
+                alt="Foto"
+                className="w-12 h-12 rounded-full object-cover object-[center_10%] shadow-md"
+              />
+            </div>
+
             <div className="ml-5 flex-col">
               <p className="text-white/60">Instrutor</p>
               <h2 className="text-white font-bold">{dados.professor}</h2>

@@ -54,7 +54,8 @@ const Courses = () => {
   return (
     <div>
       <h1>Meus cursos</h1>
-      <Banner dados={cursosDoUsuario[0]} />
+   
+      <Banner dados={cursosDoUsuario[1]} />
     </div>
   );
 };
