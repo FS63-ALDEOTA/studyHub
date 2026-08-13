@@ -11,25 +11,30 @@ import Favorites from "./pages/Favorites";
 import User from "./pages/User";
 import Home from "./pages/Home";
 
+
 function App() {
 
   return (
     <>
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<LoginPage/>} /> 
-        <Route path="/cadastro" element={<RegisterPage/>} /> 
-        <Route element={<Dashboard/>} > 
-          <Route path="/home" element={<Home/>} /> 
-          <Route path="/meus-cursos" element={<Courses/>} /> 
-          <Route path="/atividades" element={<Activities/>} /> 
-          <Route path="/calendario" element={<Calendar/>} /> 
-          <Route path="/perfil" element={<User/>} /> 
-          <Route path="/favoritos" element={<Favorites/>} /> 
-          <Route path="/configuracoes" element={<Configurations/>} />
-        </Route> 
-      </Routes>
-    </BrowserRouter>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Courses />} />
+
+          {/* <Route path="/" element={<LoginPage />} /> */}
+
+
+          <Route path="/cadastro" element={<RegisterPage />} />
+          <Route element={<Dashboard />}>
+            <Route path="/home" element={<Home />} />
+            <Route path="/meus-cursos" element={<Courses />} />
+            <Route path="/atividades" element={<Activities />} />
+            <Route path="/calendario" element={<Calendar />} />
+            <Route path="/perfil" element={<User />} />
+            <Route path="/favoritos" element={<Favorites />} />
+            <Route path="/configuracoes" element={<Configurations />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }
