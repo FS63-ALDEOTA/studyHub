@@ -1,5 +1,4 @@
-import { DownloadSimpleIcon } from "@phosphor-icons/react";
-import { IoIosArrowDown } from "react-icons/io";
+import { DownloadSimpleIcon, CaretDownIcon  } from "@phosphor-icons/react";
 
 function AsideCourseContent() {
 
@@ -15,7 +14,7 @@ function AsideCourseContent() {
             </div>
 
             <details>
-                <summary className="flex items-center justify-between cursor-pointer list-none bg-[#DEE8FF80] font-medium py-4 px-6">Módulo 1: Introdução <IoIosArrowDown className="text-[#7B7487] text-xl" /></summary>
+                <summary className="flex items-center justify-between cursor-pointer list-none bg-[#DEE8FF80] font-medium py-4 px-6">Módulo 1: Introdução <CaretDownIcon size={26} /></summary>
                 <div className="flex py-4 px-6 gap-3 bg-[#DEE8FF80]/50">
                     <input type="checkbox" name="checkDone" id="checkDone" className="self-center appearance-none w-5 h-5 border border-[#CCC3D8] rounded-xs bg-white" />
                     <div>
@@ -34,7 +33,7 @@ function AsideCourseContent() {
             </details>
 
             <details>
-                <summary className="flex items-center justify-between cursor-pointer list-none bg-[#DEE8FF80] font-medium py-4 px-6">Módulo 2: O Coração do React <IoIosArrowDown className="text-[#7B7487] text-xl" /></summary>
+                <summary className="flex items-center justify-between cursor-pointer list-none bg-[#DEE8FF80] font-medium py-4 px-6">Módulo 2: O Coração do React <CaretDownIcon size={26} /></summary>
                 <div className="flex py-4 px-6 gap-3 bg-[#DEE8FF80]/50">
                     <input type="checkbox" name="checkDone" id="checkDone" className="self-center appearance-none w-5 h-5 border border-[#CCC3D8] rounded-xs bg-white" />
                     <div>
@@ -69,7 +68,7 @@ function AsideCourseContent() {
             </details>
 
             <details>
-                <summary className="flex items-center justify-between cursor-pointer list-none bg-[#DEE8FF80] font-medium py-4 px-6">Módulo 3: Hooks e Além <IoIosArrowDown className="text-[#7B7487] text-xl" /></summary>
+                <summary className="flex items-center justify-between cursor-pointer list-none bg-[#DEE8FF80] font-medium py-4 px-6">Módulo 3: Hooks e Além <CaretDownIcon size={26} /></summary>
             </details>
 
             <div className="h-full border-t border-[#CCC3D84D] cursor-pointer">
