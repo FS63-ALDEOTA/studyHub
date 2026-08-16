@@ -54,13 +54,9 @@ const Courses = () => {
 
   return (
     <div>
-<<<<<<< HEAD
-      <h1 className="absolute">Meus cursos</h1>
-=======
       <h1>Meus cursos</h1>
    
       <Banner dados={cursosDoUsuario[1]} />
->>>>>>> 5de697051d7b8755149b6171589ffceface7146d
       <AsideCourseContent/>
     </div>
   );
