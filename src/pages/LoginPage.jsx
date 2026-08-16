@@ -90,13 +90,13 @@ function LoginPage() {
                   <label htmlFor="lembrar">Lembrar de mim</label>
                 </div>
 
-                <a className="text-[#630ED4] hover:underline" href="#">
+                <a className="text-primary hover:underline" href="#">
                   Esqueci minha senha
                 </a>
               </div>
 
               <button
-                className="bg-[#630ED4] text-[#F9F9FF] hover:bg-[#510CB0] py-3 px-4 rounded-xl"
+                className="bg-primary text-[#F9F9FF] hover:bg-[#510CB0] py-3 px-4 rounded-xl"
                 type="submit"
               >
                 Entrar
@@ -105,7 +105,7 @@ function LoginPage() {
 
             <p className="text-center mt-4">
               Não tem uma conta?
-              <a className="text-[#630ED4] hover:underline" href="#">
+              <a className="text-primary hover:underline" href="#">
                 Criar conta
               </a>
             </p>
