@@ -1,4 +1,7 @@
+@import url('https://googleapis.com');
+
 @import "tailwindcss";
+
 
 @theme {
     --color-primary: #630ED4;

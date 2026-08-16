@@ -8,7 +8,7 @@ const Dashboard = () => {
     <>
     <Header/>
     <SideBar/>
-    <div className="ml-[15%]">
+      <div className="ml-[15%]">
       <Outlet/>
     </div>
     </>
