@@ -20,13 +20,13 @@ const ModuleCard = () => {
           id: 3,
           titulo: "Estrutura de pastas",
           duracao: "21:30",
-          status: "andamento",
+          status: "assistindo",
         },
         {
           id: 4,
           titulo: "Primeiro projeto",
           duracao: "20:10",
-          status: "bloqueado",
+          status: "pendente",
         },
       ],
       tempo: "1h 20minutos",
@@ -35,7 +35,7 @@ const ModuleCard = () => {
       id: 2,
       titulo: "Módulo 2: Props e Componentes",
       licoes: [],
-      tempo: "2h 10minutos",
+      tempo: "2h 45minutos",
     },
     {
       id: 3,
@@ -45,54 +45,100 @@ const ModuleCard = () => {
     },
   ];
 
-
   return (
     <>
       {modulos.map((modulo) => {
+        const idModuloAnterior = modulo.id - 1;
+
+        const moduloAnterior = modulos.find(
+          (item) => item.id === idModuloAnterior,
+        );
+
+        const moduloAnteriorConcluido =
+          moduloAnterior &&
+          moduloAnterior.licoes.length > 0 &&
+          moduloAnterior.licoes.every((licao) => licao.status === "concluido");
 
         const moduloConcluido =
           modulo.licoes.length > 0 &&
           modulo.licoes.every((licao) => licao.status === "concluido");
-          return (
 
-            <details key={modulo.id} className="border rounded-xl p-4">
-              <summary className="cursor-pointer">
-                <h2>{modulo.titulo}</h2>
-                <span>
-                  {modulo.licoes.length} Lições • {modulo.tempo}
-                </span>
-              </summary>
-          <div>
-            {modulo.licoes.map((licao) => {
-              let icone;
-              let classeIcone;
+        const moduloBloqueado =
+          moduloAnterior && !moduloAnteriorConcluido;
 
-              if (licao.status === "concluido") { 
-                icone = "✅";
-                classeIcone = "text-green-500";
-              } else if (licao.status === "andamento") {
-                icone = "⏳";
-                classeIcone = "text-blue-500";
-              } else if (licao.status === "bloqueado") {
-                icone = "🔒";
-                classeIcone = "text-gray-500";
+        let iconeModulo;
+        let classeIconeModulo;
+
+        if (moduloBloqueado) {
+          iconeModulo = "🔒";
+          classeIconeModulo = "text-gray-500";
+        } else if (moduloConcluido) {
+          iconeModulo = "✅";
+          classeIconeModulo = "text-green-500";
+        } else {
+          iconeModulo = "▶";
+          classeIconeModulo = "text-primary";
+        }
+
+          
+        return (
+          <details key={modulo.id} className="border rounded-xl p-4 mb-4">
+            <summary
+              className={
+                moduloBloqueado
+                  ? "cursor-not-allowed"
+                  : "cursor-pointer p-3 border-b"
               }
+              onClick={(e) => {
+                if (moduloBloqueado) {
+                  e.preventDefault();
+                  alert(
+                    "Você precisa concluir o módulo anterior para acessar este módulo.",
+                  );
+                }
+              }}
+            >
+              <h2
+                className={`text-lg font-semibold text-gray-700 ${classeIconeModulo}`}
+              >
+                {modulo.titulo} {iconeModulo}
+              </h2>
+              <span
+                className={`${classeIconeModulo} text-lg font-semibold text-gray-700`}
+              >
+                {modulo.licoes.length} Lições • {modulo.tempo} {iconeModulo}
+              </span>
+            </summary>
+            <div>
+              {modulo.licoes.map((licao) => {
+                let icone;
+                let classeIcone;
 
-              return (
-                <div key={licao.id}>
-                <span className={classeIcone}>{icone}</span>
-                <span>{licao.titulo}</span>
-                <span>Duração: {licao.duracao}</span>
-              </div>
-              );
-            })
-            }
-          </div>
-        </details>)
-      } 
-    )}
+                if (licao.status === "concluido") {
+                  icone = "✅";
+                  classeIcone = "text-green-500";
+                } else if (licao.status === "assistindo") {
+                  icone = "⏳";
+                  classeIcone = "text-blue-500";
+                } else if (licao.status === "pendente") {
+                  icone = "❌";
+                  classeIcone = "text-gray-500";
+                }
+
+                return (
+                  <div key={licao.id}>
+                    <span className={classeIcone}>{icone}</span>
+                    <span>{licao.titulo}</span>
+                    <span>Duração: {licao.duracao}</span>
+                  </div>
+                );
+              })}
+            </div>
+          </details>
+        );
+      })}
     </>
   );
-}
+};
 
-export default ModuleCard
+export default ModuleCard;
