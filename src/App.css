@@ -1,6 +1,10 @@
+@import url('https://googleapis.com');
+
 @import "tailwindcss";
+
 
 @theme {
     --color-primary: #630ED4;
-    --color-secundary: #7C3AED;
+    --color-secondary: #7C3AED;
+    --font-sans: 'Inter', sans-serif;
 }

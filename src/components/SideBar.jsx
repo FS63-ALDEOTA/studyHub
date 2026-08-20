@@ -25,7 +25,7 @@ function SideBar() {
                     <Link to={"/configuracoes"} className="flex items-center gap-2 p-2 mx-4 focus:text-[#5A00C6] focus:bg-[#EADDFF] focus:rounded-xl focus:border-l-3"><GearIcon size={26} /> Configurações </Link>
                 </div>
                 <div className="flex flex-col mx-4 py-4 gap-4">
-                    <button className="flex items-center justify-center gap-2 mx-4 py-3 px-3 text-[16px] font-bold bg-secundary rounded-2xl text-white"> <SparkleIcon size={26} /> Versão Pro</button>
+                    <button className="flex items-center justify-center gap-2 mx-4 py-3 px-3 text-[16px] font-bold bg-secondary rounded-2xl text-white"> <SparkleIcon size={26} /> Versão Pro</button>
                     <button className="flex items-center gap-3 m-4"> <SignOutIcon size={26} /> Sair</button>
                 </div>
             </aside>
