@@ -1,7 +1,7 @@
+import ModuleCard from "../components/ModuleCard";
 import { useState, useEffect } from "react";
-
 import Banner from "../components/Banner";
-import AsideCourseContent from "../components/AsideCourseContent"
+import AsideCourseContent from "../components/AsideCourseContent";
 
 const Courses = () => {
   const [cursosDoUsuario, setCursosDoUsuario] = useState([]);
@@ -46,7 +46,6 @@ const Courses = () => {
 
         setCursosDoUsuario(listaCurso);
       })
-
       .catch((erro) => {
         console.error("Erro ao processar banco de dados:", erro);
       });
@@ -55,9 +54,9 @@ const Courses = () => {
   return (
     <div>
       <h1>Meus cursos</h1>
-   
       <Banner dados={cursosDoUsuario[1]} />
-      <AsideCourseContent/>
+      <AsideCourseContent />
+      <ModuleCard />
     </div>
   );
 };
