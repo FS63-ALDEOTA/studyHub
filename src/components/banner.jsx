@@ -1,6 +1,87 @@
 // import bgImage from "../assets/banner-bgs/react-do-zero.jpg";
 
-const Banner = ({ dados }) => {
+const Banner = ({Par_CodAluno}) => {
+  const [cursosDoUsuario, setCursosDoUsuario] = useState([]);
+
+  useEffect(() => {
+    const carregarDados = async () => {
+      try {
+        // const IdUserLog = Par_CodAluno;
+
+        const IdUserLog = 1;
+
+        console.log("Inicio do aluno");
+
+        const resMatriculas = await fetch(
+          `http://localhost:3000/matriculas?usuarioId=${IdUserLog}`,
+        );
+        const matriculas = await resMatriculas.json();
+        console.log("matriculas");
+        console.log(matriculas);
+        const resCursos = await fetch(`http://localhost:3000/cursos}`);
+        const cursos = await resCursos.json();
+
+        const resProgresso = await fetch(
+          `http://localhost:3000/progresso?usuarioId=${IdUserLog}`,
+        );
+        const progresso = await resProgresso.json();
+
+        const MaisRecente = progresso
+          .filter((p) => p.dataConclusao)
+          .reduce((atualMaisnovo, registro) => {
+            return new Date(registro.dataConclusao) >  new Date(atualMaisNovo.dataConclusao)
+              ? registro : atualMaisNovo;
+          });
+        
+
+        console.log("Progresso");
+        console.log(progresso);
+
+        // const alunoMatriculas = matriculas.filter((m) => m.usuarioId === IdUserLog,
+        // );
+
+        // const listaCurso = alunoMatriculas
+        //   .map((matricula) => {
+        //     const cursoInfo = cursos.find((c) => c.id === matricula.cursoId);
+
+        //     // Trava de segurança para não quebrar a aplicação caso o curso não exista
+        //     if (!cursoInfo) return null;
+
+        //     const aulasConcluidas = progresso.filter(
+        //       (p) =>
+        //         p.usuarioId === IdUserLog &&
+        //         p.cursoId === matricula.cursoId &&
+        //         p.concluido === true,
+        //     ).length;
+
+        //     const totalAulasCurso = cursoInfo.totalAulas || 0;
+        //     const porcentagemCalculada =
+        //       totalAulasCurso > 0
+        //         ? Math.round((aulasConcluidas / totalAulasCurso) * 100)
+        //         : 0;
+
+        //     return {
+        //       id: cursoInfo.id,
+        //       nome: cursoInfo.nome,
+        //       professor: cursoInfo.professor,
+        //       duracao: cursoInfo.duracaoHoras,
+        //       totalAulas: totalAulasCurso,
+        //       tags: cursoInfo.palavrasChave,
+        //       imagem: cursoInfo.imagem,
+        //       progresso: porcentagemCalculada,
+        //     };
+        //   })
+        //   .filter(Boolean);
+
+        setCursosDoUsuario(listaCurso);
+      } catch (erro) {
+        console.error("Erro ao processar banco de dados local:", erro);
+      }
+    };
+
+    carregarDados();
+  }, []);
+
   if (!dados) {
     return null;
   }
@@ -12,7 +93,10 @@ const Banner = ({ dados }) => {
     import.meta.url,
   ).href;
 
-  const professorAvatar = new URL(`../assets/Prof_avatar/Prof_01.png`, import.meta.url,).href
+  const professorAvatar = new URL(
+    `../assets/Prof_avatar/Prof_01.png`,
+    import.meta.url,
+  ).href;
 
   return (
     <>
