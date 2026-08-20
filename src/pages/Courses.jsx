@@ -59,7 +59,7 @@ const Courses = () => {
       <Link className="mr-8 my-4 text-[14px] focus:text-primary focus:border-b-2 pb-6.5">Conteúdo</Link>
       <Link className="mr-8 my-4 text-[14px] focus:text-primary focus:border-b-2 pb-6.5">Materiais</Link>
       <Link className="my-4 text-[14px] focus:text-primary focus:border-b-2 pb-6.5">Avaliações</Link>
-    <div>
+    
       <h1>Meus cursos</h1>
    
       <Banner dados={cursosDoUsuario[1]} />
