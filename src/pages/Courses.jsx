@@ -54,19 +54,16 @@ const Courses = () => {
   }, []);
 
   return (
-<<<<<<< HEAD
     <div className="border-b-2 border-[#CCC3D8] pl-6 pb-6">
       <Link className="mr-8 my-4 text-[14px] focus:text-primary focus:border-b-2 pb-6.5">Visão Geral</Link>
       <Link className="mr-8 my-4 text-[14px] focus:text-primary focus:border-b-2 pb-6.5">Conteúdo</Link>
       <Link className="mr-8 my-4 text-[14px] focus:text-primary focus:border-b-2 pb-6.5">Materiais</Link>
       <Link className="my-4 text-[14px] focus:text-primary focus:border-b-2 pb-6.5">Avaliações</Link>
-=======
     <div>
       <h1>Meus cursos</h1>
    
       <Banner dados={cursosDoUsuario[1]} />
       <AsideCourseContent/>
->>>>>>> 5de697051d7b8755149b6171589ffceface7146d
     </div>
   );
 };
