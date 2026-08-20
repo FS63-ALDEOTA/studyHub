@@ -1,3 +1,14 @@
+import React from "react"; 
+
+import {
+  Play,
+  Lock,
+  CheckCircle,
+  Hourglass,
+  XCircle,
+  CaretDown,
+} from "@phosphor-icons/react";
+
 const ModuleCard = () => {
   const modulos = [
     {
@@ -47,6 +58,7 @@ const ModuleCard = () => {
 
   return (
     <>
+    <div className="max-w-3xl w-full flex flex-col gap-4">
       {modulos.map((modulo) => {
         const idModuloAnterior = modulo.id - 1;
 
@@ -67,47 +79,66 @@ const ModuleCard = () => {
           moduloAnterior && !moduloAnteriorConcluido;
 
         let iconeModulo;
-        let classeIconeModulo;
+        let coresIcones;
+        let corBorda;
+        let textoStatus;
 
         if (moduloBloqueado) {
-          iconeModulo = "🔒";
-          classeIconeModulo = "text-gray-500";
+          iconeModulo = <Lock size={24} weight="bold" />;
+          coresIcones = "bg-gray-100 text-gray-500";
+          corBorda = "border-gray-200 bg-gray-50";
+          textoStatus = "Bloqueado • Conclua o módulo anterior para acessar";
         } else if (moduloConcluido) {
-          iconeModulo = "✅";
-          classeIconeModulo = "text-green-500";
+          iconeModulo = <CheckCircle size={24} weight="regular" />;
+          coresIcones = "bg-green-100 text-green-600";
+          corBorda = "border-gray-200 bg-white";
+          textoStatus = `${modulo.licoes.length} lições • ${modulo.tempo}`;
         } else {
-          iconeModulo = "▶";
-          classeIconeModulo = "text-primary";
+          iconeModulo = <Play size={24} weight="fill" />;
+          coresIcones = "bg-purple-600 text-white rounded-lg";
+          corBorda = "border-purple-100 bg-purple-50/30";
+          textoStatus = `${modulo.licoes.length} lições • ${modulo.tempo} (Em andamento)`;
         }
 
-          
         return (
-          <details key={modulo.id} className="border rounded-xl p-4 mb-4">
+          <details
+            key={modulo.id}
+            className={`border rounded-xl shadow-sm overflow-hidden group ${corBorda}`}
+          >
             <summary
               className={
                 moduloBloqueado
-                  ? "cursor-not-allowed"
-                  : "cursor-pointer p-3 border-b"
+                  ? "list-none flex items-center gap-4 p-4 cursor-not-allowed [&::-webkit-details-marker]:hidden"
+                  : "list-none flex items-center gap-4 p-4 cursor-pointer [&::-webkit-details-marker]:hidden"
               }
               onClick={(e) => {
                 if (moduloBloqueado) {
                   e.preventDefault();
-                  alert(
-                    "Você precisa concluir o módulo anterior para acessar este módulo.",
-                  );
                 }
               }}
             >
-              <h2
-                className={`text-lg font-semibold text-gray-700 ${classeIconeModulo}`}
+              <div
+                className={`w-12 h-12 rounded-xl flex items-center justify-center shrink-0 ${coresIcones}`}
               >
-                {modulo.titulo} {iconeModulo}
-              </h2>
-              <span
-                className={`${classeIconeModulo} text-lg font-semibold text-gray-700`}
-              >
-                {modulo.licoes.length} Lições • {modulo.tempo} {iconeModulo}
-              </span>
+                {iconeModulo}
+              </div>
+              <div className="flex-1 flex flex-col">
+                <h2
+                  className={`text-lg font-bold ${moduloBloqueado ? "text-gray-600" : moduloConcluido ? "text-gray-800" : "text-purple-700"}`}
+                >
+                  {modulo.titulo}
+                </h2>
+                <span className="text-sm font-medium text-gray-500">
+                  {textoStatus}
+                </span>
+              </div>
+              {!moduloBloqueado && (
+                <CaretDown
+                  size={20}
+                  className="text-gray-400 group-open:rotate-180 transition-transform"
+                />
+              )}
+              {moduloBloqueado && <Lock size={20} className="text-gray-400" />}
             </summary>
             <div>
               {modulo.licoes.map((licao) => {
@@ -115,13 +146,13 @@ const ModuleCard = () => {
                 let classeIcone;
 
                 if (licao.status === "concluido") {
-                  icone = "✅";
+                  icone = <CheckCircle size={24} weight="fill" />;
                   classeIcone = "text-green-500";
                 } else if (licao.status === "assistindo") {
-                  icone = "⏳";
+                  icone = <Hourglass size={24} weight="duotone" />;
                   classeIcone = "text-blue-500";
                 } else if (licao.status === "pendente") {
-                  icone = "❌";
+                  icone = <XCircle size={24} weight="regular" />;
                   classeIcone = "text-gray-500";
                 }
 
@@ -137,6 +168,7 @@ const ModuleCard = () => {
           </details>
         );
       })}
+    </div>
     </>
   );
 };
