@@ -1,25 +1,113 @@
+import { useEffect, useState } from "react"
 import SummaryCards from "../components/SummaryCards"
-import { infos } from "./infos"
+import {
+  BookOpenCheck,
+  BadgeCheck,
+  FilePlay,
+  Clock
+} from "lucide-react"
 
 const Home = () => {
-    return (
-        <div>
-            <h1>Página inicial</h1>
+  const [qtdMatricula, setQtdMatricula] = useState(0)
+  const [qtdCompletos, setQtdCompletos] = useState(0)
+  const [qtdAulasConcluidas, setQtdAulasConcluidas] = useState(0)
+  const [HorasAssistidas, setHorasAssistidas] = useState(0)
 
-            <div className="flex gap-4">
-                {infos.map((info) => (
-                    <SummaryCards
-                        key={info.title}
-                        title={info.title}
-                        subtitle={info.subtitle}
-                        icon={info.icon}
-                        colorBgIcon={info.colorBgIcon}
-                        colorIcon={info.colorIcon}
-                    />
-                ))}
-            </div>
-        </div>
-    )
+
+  useEffect(() => {
+    fetch("http://localhost:3000/matriculas?usuarioId=1")
+      .then(res => res.json())
+      .then(dados => {
+        setQtdMatricula(dados.filter((matricula) => {
+          return matricula.status === "ativo"
+        }).length)
+
+      })
+  }, [])
+
+  useEffect(() => {
+    fetch("http://localhost:3000/matriculas?usuarioId=1")
+      .then(res => res.json())
+      .then(dados => {
+        setQtdCompletos(dados.filter((concluido) => {
+          return concluido.status === "concluido"
+        }).length)
+
+      })
+  }, [])
+
+  useEffect(() => {
+    fetch("http://localhost:3000/progresso?usuarioId=1&concluido=true")
+    .then(res =>res.json())
+    .then(dados =>{
+      setQtdAulasConcluidas(dados.filter((concluido) => {
+        return concluido.aulaId
+        
+      }).length)
+    })
+  },[])
+
+  useEffect(() => {
+    fetch("http://localhost:3000/aulas")
+    .then(res => res.json())
+    .then(dados => {
+      setHorasAssistidas(dados.reduce((assistidas)=> {
+        return assistidas.duracaoMinutos
+      }))
+      
+    })
+  })
+
+
+  const infos = [
+    {
+      title: "CURSOS ATIVOS",
+      subtitle: qtdMatricula,
+      icon: BookOpenCheck,
+      colorBgIcon: "#EADDFF80",
+      colorIcon: "#630ED4"
+    },
+    {
+      title: "COMPLETOS",
+      subtitle: qtdCompletos,
+      icon: BadgeCheck,
+      colorBgIcon: "#DCFCE7",
+      colorIcon: "#16A34A"
+    },
+    {
+      title: "AULAS ASSISTIDAS",
+      subtitle: qtdAulasConcluidas,
+      icon: FilePlay,
+      colorBgIcon: "#FFEDD5",
+      colorIcon: "#EA580C"
+    },
+    {
+      title: "TOTAL HORAS",
+      subtitle: "14h",
+      icon: Clock,
+      colorBgIcon: "#DBEAFE",
+      colorIcon: "#2563EB"
+    }
+  ]
+
+  return (
+    <div>
+      <h1>Página inicial</h1>
+
+      <div className="flex gap-4">
+        {infos.map((info) => (
+          <SummaryCards
+            key={info.title}
+            title={info.title}
+            subtitle={info.subtitle}
+            icon={info.icon}
+            colorBgIcon={info.colorBgIcon}
+            colorIcon={info.colorIcon}
+          />
+        ))}
+      </div>
+    </div>
+  )
 }
 
 export default Home
