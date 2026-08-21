@@ -11,6 +11,11 @@ import Favorites from "./pages/Favorites";
 import User from "./pages/User";
 import Home from "./pages/Home";
 import Testes from "./pages/Testes";
+import NavCourse from "./pages/NavCourse";
+import GeneralCourse from "./pages/GeneralCourse";
+import ContentCourse from "./pages/ContentCourse";
+import MaterialCourse from "./pages/MaterialCourse";
+import TestsCourse from "./pages/TestsCourse";
 
 
 function App() {
@@ -23,7 +28,13 @@ function App() {
         <Route path="/cadastro" element={<RegisterPage/>} /> 
         <Route element={<Dashboard/>} > 
           <Route path="/home" element={<Home/>} /> 
-          <Route path="/meus-cursos" element={<Courses/>} /> 
+          <Route path="/meus-cursos" element={<Courses/>} />
+          <Route element={<NavCourse/>}>
+            <Route path="/geral_curso" element={<GeneralCourse/>}/>
+            <Route path="/conteudo" element={<ContentCourse/>}/>
+            <Route path="/materiais" element={<MaterialCourse/>}/>
+            <Route path="/avaliacoes" element={<TestsCourse/>}/>
+          </Route> 
           <Route path="/atividades" element={<Activities/>} /> 
           <Route path="/calendario" element={<Calendar/>} /> 
           <Route path="/perfil" element={<User/>} /> 

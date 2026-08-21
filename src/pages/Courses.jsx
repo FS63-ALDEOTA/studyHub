@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 
 import Banner from "../components/Banner";
 import AsideCourseContent from "../components/AsideCourseContent"
+import NavCourse from "./NavCourse";
 
 const Courses = () => {
   const [cursosDoUsuario, setCursosDoUsuario] = useState([]);
@@ -55,14 +56,11 @@ const Courses = () => {
 
   return (
     <div className="border-b-2 border-[#CCC3D8] pl-6 pb-6">
-      <Link className="mr-8 my-4 text-[14px] focus:text-primary focus:border-b-2 pb-6.5">Visão Geral</Link>
-      <Link className="mr-8 my-4 text-[14px] focus:text-primary focus:border-b-2 pb-6.5">Conteúdo</Link>
-      <Link className="mr-8 my-4 text-[14px] focus:text-primary focus:border-b-2 pb-6.5">Materiais</Link>
-      <Link className="my-4 text-[14px] focus:text-primary focus:border-b-2 pb-6.5">Avaliações</Link>
-    
+      <NavCourse/>
       <h1>Meus cursos</h1>
    
       <Banner dados={cursosDoUsuario[1]} />
+      
       <AsideCourseContent/>
     </div>
   );
