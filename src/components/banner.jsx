@@ -1,14 +1,14 @@
 // import bgImage from "../assets/banner-bgs/react-do-zero.jpg";
 
-const Banner = ({Par_CodAluno}) => {
-  const [cursosDoUsuario, setCursosDoUsuario] = useState([]);
+import { useEffect } from "react";
+
+const Banner = () => {
+  // const [cursosDoUsuario, setCursosDoUsuario] = useState([]);
 
   useEffect(() => {
     const carregarDados = async () => {
       try {
-        // const IdUserLog = Par_CodAluno;
-
-        const IdUserLog = 1;
+        const IdUserLog = localStorage.getItem("id");
 
         console.log("Inicio do aluno");
 
@@ -18,7 +18,7 @@ const Banner = ({Par_CodAluno}) => {
         const matriculas = await resMatriculas.json();
         console.log("matriculas");
         console.log(matriculas);
-        const resCursos = await fetch(`http://localhost:3000/cursos}`);
+        const resCursos = await fetch(`http://localhost:3000/cursos`);
         const cursos = await resCursos.json();
 
         const resProgresso = await fetch(
@@ -26,16 +26,23 @@ const Banner = ({Par_CodAluno}) => {
         );
         const progresso = await resProgresso.json();
 
-        const MaisRecente = progresso
-          .filter((p) => p.dataConclusao)
-          .reduce((atualMaisnovo, registro) => {
-            return new Date(registro.dataConclusao) >  new Date(atualMaisNovo.dataConclusao)
-              ? registro : atualMaisNovo;
-          });
+        const MaisRecente = progresso.sort((a, b) => {
+          const antigo = new Date(a.dataConclusao).getTime();
+          const recente = new Date(b.dataConclusao).getTime();
+          return recente - antigo; 
+        })
         
+        console.log("Progresso:", progresso);
+        console.log("recente", MaisRecente[0]);
 
-        console.log("Progresso");
-        console.log(progresso);
+       const resCurso = await fetch(
+          `http://localhost:3000/cursos?usuarioId=${MaisRecente.cursoId}`,
+        );
+        const Curso = await resCurso.json();
+
+        console.log("Curso", Curso);
+
+
 
         // const alunoMatriculas = matriculas.filter((m) => m.usuarioId === IdUserLog,
         // );
@@ -73,7 +80,7 @@ const Banner = ({Par_CodAluno}) => {
         //   })
         //   .filter(Boolean);
 
-        setCursosDoUsuario(listaCurso);
+        // setCursosDoUsuario(listaCurso);
       } catch (erro) {
         console.error("Erro ao processar banco de dados local:", erro);
       }
@@ -82,9 +89,7 @@ const Banner = ({Par_CodAluno}) => {
     carregarDados();
   }, []);
 
-  if (!dados) {
-    return null;
-  }
+
 
   const nomeDoArquivo = dados.imagem.split("/").pop();
 
@@ -105,7 +110,7 @@ const Banner = ({Par_CodAluno}) => {
           className="flex flex-col relative p-10 items-start bg-cover bg-top overflow-hidden"
           style={{ backgroundImage: `url(${imagemLocalUrl})` }}
         >
-          {/* TAGS */}
+       
           <div className="flex gap-2 text-xs text-white font-bold">
             {dados.tags?.map((tagTexto, index) => (
               <div
@@ -123,8 +128,7 @@ const Banner = ({Par_CodAluno}) => {
           </div>
 
           <div className="flex">
-            {/* <div className="bg-amber-50 rounded-e-full"></div>
-            <p className="bg-amber-50 rounded-e-full">v</p> */}
+          
 
             <div>
               <img
@@ -169,8 +173,6 @@ const Banner = ({Par_CodAluno}) => {
         </div>
       </div>
     </>
-
-    // <div>banner</div>
   );
 };
 

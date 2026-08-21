@@ -11,7 +11,7 @@ const Courses = () => {
       <h1>Meus cursos</h1>
 
       <Banner />
-   {cursosDoUsuario.length > 0 && <Banner dados={cursosDoUsuario[0]} />} 
+   { <Banner  />} 
       <AsideCourseContent />
     </div>
   );
