@@ -106,9 +106,7 @@ const Banner = () => {
     );
   }
 
-  const nomeDoArquivo = dados.CursoImagem
-    ? dados.CursoImagem.split("/").pop()
-    : "";
+  const nomeDoArquivo = dados.CursoImagem.split("/").pop();
 
   const imagemLocalUrl = new URL(
     `../assets/banner-bgs/${nomeDoArquivo}`,
