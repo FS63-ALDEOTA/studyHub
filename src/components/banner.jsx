@@ -4,8 +4,7 @@ import { useEffect, useState } from "react";
 
 const Banner = () => {
   // const [cursosDoUsuario, setCursosDoUsuario] = useState([]);
-  const [dados, setDados] = useState(null); 
-
+  const [dados, setDados] = useState(null);
 
   useEffect(() => {
     const carregarDados = async () => {
@@ -33,39 +32,28 @@ const Banner = () => {
         const MaisRecente = progresso.sort((a, b) => {
           const antigo = new Date(a.dataConclusao).getTime();
           const recente = new Date(b.dataConclusao).getTime();
-          return recente - antigo; 
-        })
+          return recente - antigo;
+        });
 
-        // const MaisRecente = progresso.filter((p) => p.dataConclusao).reduce((atualMaisNovo, registro) =>
-        //   { return new Date(registro.dataConclusao) > new Date(atualMaisNovo.dataConclusao) ? registro : atualMaisNovo; });
-
-                
-        
-        console.log("recente", MaisRecente);
+        console.log("recente", MaisRecente[0]);
 
         debugger;
 
-       const resCurso = await fetch(
+        const resCurso = await fetch(
           `http://localhost:3000/cursos/id=${MaisRecente.cursoId}`,
         );
         const Curso = await resCurso.json();
 
         console.log("Curso", Curso);
 
-        
-
-        setDados ({
+        setDados({
           CursoNome: Curso.nome,
           CursoProfessor: Curso.professor,
           CursoDuracao: Curso.duracaoHoras,
           CursoTotalAulas: Curso.totalAulas,
           CursoTags: Curso.palavrasChaves,
-          CursoImagem: Curso.imagem            
-        })
-
-   
-
-
+          CursoImagem: Curso.imagem,
+        });
 
         // const alunoMatriculas = matriculas.filter((m) => m.usuarioId === IdUserLog,
         // );
@@ -112,20 +100,25 @@ const Banner = () => {
     carregarDados();
   }, []);
 
-    if (!dados) {
-    return <div className="text-white text-center py-10">Carregando dados...</div>;
+  if (!dados) {
+    return (
+      <div className="text-white text-center py-10">Carregando dados...</div>
+    );
   }
 
-
-
-  const nomeDoArquivo = dados.CursoImagem ? dados.CursoImagem.split("/").pop():"";
+  const nomeDoArquivo = dados.CursoImagem
+    ? dados.CursoImagem.split("/").pop()
+    : "";
 
   const imagemLocalUrl = new URL(
     `../assets/banner-bgs/${nomeDoArquivo}`,
-    import.meta.url,).href;
+    import.meta.url,
+  ).href;
 
   const professorAvatar = new URL(
-    `../assets/Prof_avatar/Prof_01.png`, import.meta.url, ).href;
+    `../assets/Prof_avatar/Prof_01.png`,
+    import.meta.url,
+  ).href;
 
   return (
     <>
@@ -134,7 +127,6 @@ const Banner = () => {
           className="flex flex-col relative p-10 items-start bg-cover bg-top overflow-hidden"
           style={{ backgroundImage: `url(${imagemLocalUrl})` }}
         >
-       
           <div className="flex gap-2 text-xs text-white font-bold">
             {dados.tags?.map((tagTexto, index) => (
               <div
@@ -152,8 +144,6 @@ const Banner = () => {
           </div>
 
           <div className="flex">
-          
-
             <div>
               <img
                 src={professorAvatar}
