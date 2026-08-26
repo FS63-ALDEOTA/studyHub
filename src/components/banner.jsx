@@ -1,9 +1,11 @@
 // import bgImage from "../assets/banner-bgs/react-do-zero.jpg";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const Banner = () => {
   // const [cursosDoUsuario, setCursosDoUsuario] = useState([]);
+  const [dados, setDados] = useState(null); 
+
 
   useEffect(() => {
     const carregarDados = async () => {
@@ -26,21 +28,42 @@ const Banner = () => {
         );
         const progresso = await resProgresso.json();
 
+        console.log("Progresso:", progresso);
+
         const MaisRecente = progresso.sort((a, b) => {
           const antigo = new Date(a.dataConclusao).getTime();
           const recente = new Date(b.dataConclusao).getTime();
           return recente - antigo; 
         })
+
+        // const MaisRecente = progresso.filter((p) => p.dataConclusao).reduce((atualMaisNovo, registro) =>
+        //   { return new Date(registro.dataConclusao) > new Date(atualMaisNovo.dataConclusao) ? registro : atualMaisNovo; });
+
+                
         
-        console.log("Progresso:", progresso);
-        console.log("recente", MaisRecente[0]);
+        console.log("recente", MaisRecente);
+
+        debugger;
 
        const resCurso = await fetch(
-          `http://localhost:3000/cursos?usuarioId=${MaisRecente.cursoId}`,
+          `http://localhost:3000/cursos/id=${MaisRecente.cursoId}`,
         );
         const Curso = await resCurso.json();
 
         console.log("Curso", Curso);
+
+        
+
+        setDados ({
+          CursoNome: Curso.nome,
+          CursoProfessor: Curso.professor,
+          CursoDuracao: Curso.duracaoHoras,
+          CursoTotalAulas: Curso.totalAulas,
+          CursoTags: Curso.palavrasChaves,
+          CursoImagem: Curso.imagem            
+        })
+
+   
 
 
 
@@ -89,19 +112,20 @@ const Banner = () => {
     carregarDados();
   }, []);
 
+    if (!dados) {
+    return <div className="text-white text-center py-10">Carregando dados...</div>;
+  }
 
 
-  const nomeDoArquivo = dados.imagem.split("/").pop();
+
+  const nomeDoArquivo = dados.CursoImagem ? dados.CursoImagem.split("/").pop():"";
 
   const imagemLocalUrl = new URL(
     `../assets/banner-bgs/${nomeDoArquivo}`,
-    import.meta.url,
-  ).href;
+    import.meta.url,).href;
 
   const professorAvatar = new URL(
-    `../assets/Prof_avatar/Prof_01.png`,
-    import.meta.url,
-  ).href;
+    `../assets/Prof_avatar/Prof_01.png`, import.meta.url, ).href;
 
   return (
     <>
