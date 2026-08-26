@@ -38,26 +38,44 @@ const Home = () => {
 
   useEffect(() => {
     fetch("http://localhost:3000/progresso?usuarioId=1&concluido=true")
-    .then(res =>res.json())
-    .then(dados =>{
-      setQtdAulasConcluidas(dados.filter((concluido) => {
-        return concluido.aulaId
-        
-      }).length)
-    })
-  },[])
+      .then(res => res.json())
+      .then(dados => {
+        setQtdAulasConcluidas(dados.filter((concluido) => {
+          return concluido.aulaId
 
-  useEffect(() => {
-    fetch("http://localhost:3000/aulas")
-    .then(res => res.json())
-    .then(dados => {
-      setHorasAssistidas(dados.reduce((assistidas)=> {
-        return assistidas.duracaoMinutos
-      }))
-      
-    })
-  })
+        }).length)
+      })
+  }, [])
 
+useEffect(() => {
+
+    fetch("http://localhost:3000/progresso?usuarioId=1&concluido=true")
+      .then(res => res.json())
+      .then(progresso => {
+
+        fetch("http://localhost:3000/aulas")
+          .then(res => res.json())
+          .then(aulas => {
+
+            const totalMinutos = progresso.reduce((total, item) => {
+
+              const aulaEncontrada = aulas.find((aula) => {
+                return aula.id === item.aulaId;
+              });
+
+              return total + aulaEncontrada.duracaoMinutos;
+
+            }, 0);
+
+            const totalHoras = totalMinutos / 60;
+
+            setHorasAssistidas(totalHoras);
+
+          });
+
+      });
+
+  }, []);
 
   const infos = [
     {
@@ -83,7 +101,7 @@ const Home = () => {
     },
     {
       title: "TOTAL HORAS",
-      subtitle: "14h",
+      subtitle: HorasAssistidas,
       icon: Clock,
       colorBgIcon: "#DBEAFE",
       colorIcon: "#2563EB"
