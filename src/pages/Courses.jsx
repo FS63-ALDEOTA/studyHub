@@ -11,7 +11,7 @@ const Courses = () => {
       <h1>Meus cursos</h1>
 
       <Banner />
-   { <Banner  />} 
+
       <AsideCourseContent />
     </div>
   );

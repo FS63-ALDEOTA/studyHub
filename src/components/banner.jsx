@@ -9,22 +9,17 @@ const Banner = () => {
   useEffect(() => {
     const carregarDados = async () => {
       try {
-        const IdUserLog = localStorage.getItem("id");
+        // const IdUserLog = localStorage.getItem("id");
+        const IdUserLog ='1';
 
-        console.log("Inicio do aluno");
+        console.log(IdUserLog);
 
-        const resMatriculas = await fetch(
-          `http://localhost:3000/matriculas?usuarioId=${IdUserLog}`,
-        );
+        const resMatriculas = await fetch(`http://localhost:3000/matriculas?usuarioId=${IdUserLog}`,);
         const matriculas = await resMatriculas.json();
         console.log("matriculas");
         console.log(matriculas);
-        const resCursos = await fetch(`http://localhost:3000/cursos`);
-        const cursos = await resCursos.json();
 
-        const resProgresso = await fetch(
-          `http://localhost:3000/progresso?usuarioId=${IdUserLog}`,
-        );
+        const resProgresso = await fetch(`http://localhost:3000/progresso?usuarioId=${IdUserLog}`,);
         const progresso = await resProgresso.json();
 
         console.log("Progresso:", progresso);
@@ -36,15 +31,22 @@ const Banner = () => {
         });
 
         console.log("recente", MaisRecente[0]);
+        console.log("Curso para achar", MaisRecente[0].cursoId);
 
-        debugger;
+        // debugger;
 
-        const resCurso = await fetch(
-          `http://localhost:3000/cursos/id=${MaisRecente.cursoId}`,
-        );
+        const resCurso = await fetch(`http://localhost:3000/cursos/${MaisRecente[0].cursoId}`,);
         const Curso = await resCurso.json();
 
         console.log("Curso", Curso);
+
+        console.log("Áula ID", MaisRecente[0].aulaId);
+        console.log("Total Aulas", Curso.totalAulas);
+
+
+        const ProgAtual = (100*MaisRecente[0].aulaId)/Curso.totalAulas;
+
+        console.log ('Percentual -> ', ProgAtual);
 
         setDados({
           CursoNome: Curso.nome,
@@ -53,45 +55,10 @@ const Banner = () => {
           CursoTotalAulas: Curso.totalAulas,
           CursoTags: Curso.palavrasChaves,
           CursoImagem: Curso.imagem,
+          CursoProg: ProgAtual
         });
 
-        // const alunoMatriculas = matriculas.filter((m) => m.usuarioId === IdUserLog,
-        // );
-
-        // const listaCurso = alunoMatriculas
-        //   .map((matricula) => {
-        //     const cursoInfo = cursos.find((c) => c.id === matricula.cursoId);
-
-        //     // Trava de segurança para não quebrar a aplicação caso o curso não exista
-        //     if (!cursoInfo) return null;
-
-        //     const aulasConcluidas = progresso.filter(
-        //       (p) =>
-        //         p.usuarioId === IdUserLog &&
-        //         p.cursoId === matricula.cursoId &&
-        //         p.concluido === true,
-        //     ).length;
-
-        //     const totalAulasCurso = cursoInfo.totalAulas || 0;
-        //     const porcentagemCalculada =
-        //       totalAulasCurso > 0
-        //         ? Math.round((aulasConcluidas / totalAulasCurso) * 100)
-        //         : 0;
-
-        //     return {
-        //       id: cursoInfo.id,
-        //       nome: cursoInfo.nome,
-        //       professor: cursoInfo.professor,
-        //       duracao: cursoInfo.duracaoHoras,
-        //       totalAulas: totalAulasCurso,
-        //       tags: cursoInfo.palavrasChave,
-        //       imagem: cursoInfo.imagem,
-        //       progresso: porcentagemCalculada,
-        //     };
-        //   })
-        //   .filter(Boolean);
-
-        // setCursosDoUsuario(listaCurso);
+        
       } catch (erro) {
         console.error("Erro ao processar banco de dados local:", erro);
       }
@@ -108,15 +75,9 @@ const Banner = () => {
 
   const nomeDoArquivo = dados.CursoImagem.split("/").pop();
 
-  const imagemLocalUrl = new URL(
-    `../assets/banner-bgs/${nomeDoArquivo}`,
-    import.meta.url,
-  ).href;
+  const imagemLocalUrl = new URL(`../assets/banner-bgs/${nomeDoArquivo}`,import.meta.url,).href;
 
-  const professorAvatar = new URL(
-    `../assets/Prof_avatar/Prof_01.png`,
-    import.meta.url,
-  ).href;
+  const professorAvatar = new URL(`../assets/Prof_avatar/Prof_01.png`, import.meta.url,).href;
 
   return (
     <>
@@ -152,11 +113,11 @@ const Banner = () => {
 
             <div className="ml-5 flex-col">
               <p className="text-white/60">Instrutor</p>
-              <h2 className="text-white font-bold">{dados.professor}</h2>
+              <h2 className="text-white font-bold">{dados.CursoProfessor}</h2>
             </div>
             <div className="ml-5 flex-col">
               <p className="text-white/60">Duração Total</p>
-              <p className="text-white font-bold">{dados.duracao} horas</p>
+              <p className="text-white font-bold">{dados.CursoDuracao} horas</p>
             </div>
             <div className="ml-5 flex-col">
               <p className="text-white/60">Certificado</p>
@@ -167,13 +128,13 @@ const Banner = () => {
           <div className="w-full flex-1">
             <div className="text-white font-bold mt-6 flex justify-between w-100">
               <p> Seu progresso</p>
-              <span>{dados.progresso}%</span>
+              <span>{dados.CursoProg}%</span>
             </div>
             <div className="flex items-baseline">
               <div className="w-100 bg-white/20 h-2.5 rounded-full overflow-hidden backdrop-blur-sm">
                 <div
                   className="bg-[#630ED4] h-full rounded-full"
-                  style={{ width: `${dados.progresso}%` }}
+                  style={{ width: `${dados.CursoProg}%` }}
                 />
               </div>
               <button className="ml-10 w-full md:w-auto px-6 py-2 bg-white text-[#630ED4] font-bold text-sm rounded-xl transition-all shadow-lg hover:bg-slate-50 active:scale-95 flex items-center justify-center gap-2 whitespace-nowrap cursor-pointer">
