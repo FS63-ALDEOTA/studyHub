@@ -53,7 +53,7 @@ const Banner = () => {
           CursoProfessor: Curso.professor,
           CursoDuracao: Curso.duracaoHoras,
           CursoTotalAulas: Curso.totalAulas,
-          CursoTags: Curso.palavrasChaves,
+          CursoTags: Curso.palavrasChave,
           CursoImagem: Curso.imagem,
           CursoProg: ProgAtual
         });
@@ -72,6 +72,7 @@ const Banner = () => {
       <div className="text-white text-center py-10">Carregando dados...</div>
     );
   }
+  console.log ("Dados- > ", dados)
 
   const nomeDoArquivo = dados.CursoImagem.split("/").pop();
 
@@ -81,13 +82,13 @@ const Banner = () => {
 
   return (
     <>
-      <div className="w-full max-w-5xl mx-auto p-1 flex flex-col">
+      <div className="w-full  p-1 flex flex-col">
         <div
           className="flex flex-col relative p-10 items-start bg-cover bg-top overflow-hidden"
           style={{ backgroundImage: `url(${imagemLocalUrl})` }}
         >
           <div className="flex gap-2 text-xs text-white font-bold">
-            {dados.tags?.map((tagTexto, index) => (
+            {dados.CursoTags?.map((tagTexto, index) => (
               <div
                 key={index}
                 className={`px-2.5 py-1 rounded-full
