@@ -2,8 +2,8 @@
 import { useState, useEffect } from "react";
 
 import Banner from "../components/Banner";
-import AsideCourseContent from "../components/AsideCourseContent"
 import NavCourse from "./NavCourse";
+import { Outlet } from "react-router-dom";
 
 const Courses = () => {
   const [cursosDoUsuario, setCursosDoUsuario] = useState([]);
@@ -55,13 +55,9 @@ const Courses = () => {
   }, []);
 
   return (
-    <div className="border-b-2 border-[#CCC3D8] pl-6 pb-6">
-      <NavCourse/>
-      <h1>Meus cursos</h1>
-   
+    <div className=" pb-6">
       <Banner dados={cursosDoUsuario[1]} />
-      
-      <AsideCourseContent/>
+      <Outlet />
     </div>
   );
 };

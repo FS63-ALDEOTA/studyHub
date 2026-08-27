@@ -16,7 +16,7 @@ const Banner = ({ dados }) => {
 
   return (
     <>
-      <div className="w-full max-w-5xl mx-auto p-1 flex flex-col">
+      <div className="w-full flex flex-col">
         <div
           className="flex flex-col relative p-10 items-start bg-cover bg-top overflow-hidden"
           style={{ backgroundImage: `url(${imagemLocalUrl})` }}
