@@ -6,5 +6,14 @@
 @theme {
     --color-primary: #630ED4;
     --color-secondary: #7C3AED;
-    --font-sans: 'Inter', sans-serif;
+}
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
 }
