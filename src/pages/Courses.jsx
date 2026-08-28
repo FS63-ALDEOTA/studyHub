@@ -54,8 +54,11 @@ const Courses = () => {
 
   return (
     <div className=" pb-6">
+  
       <Banner dados={cursosDoUsuario[1]} />
-      <Outlet />
+      <div className="p-4">
+      <Outlet/>
+      </div>
     </div>
   );
 };

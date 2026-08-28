@@ -31,7 +31,7 @@ function App() {
             <Route path="/home" element={<Home />} />
             <Route path="/meus-cursos" element={<Courses />} >
               <Route element={<NavCourse />}>
-                <Route path="geral_curso" element={<GeneralCourse />} />
+                <Route index element={<GeneralCourse />} />
                 <Route path="conteudo" element={<ContentCourse />} />
                 <Route path="materiais" element={<MaterialCourse />} />
                 <Route path="avaliacoes" element={<TestsCourse />} />
