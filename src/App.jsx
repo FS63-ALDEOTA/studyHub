@@ -16,6 +16,7 @@ import GeneralCourse from "./pages/GeneralCourse";
 import ContentCourse from "./pages/ContentCourse";
 import MaterialCourse from "./pages/MaterialCourse";
 import TestsCourse from "./pages/TestsCourse";
+import CourseDetails from "./pages/CourseDetails";
 
 
 function App() {
@@ -36,6 +37,7 @@ function App() {
                 <Route path="avaliacoes" element={<TestsCourse />} />
               </Route>
             </Route>
+            <Route path="/meus-cursos/:id" element={<CourseDetails />} />
             <Route path="/atividades" element={<Activities />} />
             <Route path="/calendario" element={<Calendar />} />
             <Route path="/perfil" element={<User />} />

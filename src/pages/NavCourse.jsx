@@ -14,7 +14,6 @@ export default function NavCourse() {
       </div>
       <div className="p-4">
       <Outlet/>
-      </div>
     </div>
   )
 }
