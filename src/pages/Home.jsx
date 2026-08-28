@@ -47,11 +47,14 @@ const Home = () => {
       })
   }, [])
 
-useEffect(() => {
+  useEffect(() => {
 
     fetch("http://localhost:3000/progresso?usuarioId=1&concluido=true")
       .then(res => res.json())
       .then(progresso => {
+
+        console.log("PROGRESSO:", progresso)
+
 
         fetch("http://localhost:3000/aulas")
           .then(res => res.json())
@@ -60,14 +63,16 @@ useEffect(() => {
             const totalMinutos = progresso.reduce((total, item) => {
 
               const aulaEncontrada = aulas.find((aula) => {
-                return aula.id === item.aulaId;
+                return aula.id == item.aulaId;
               });
 
+              console.log("ITEM:", item);
+              console.log("AULA ENCONTRADA:", aulaEncontrada);
               return total + aulaEncontrada.duracaoMinutos;
 
             }, 0);
 
-            const totalHoras = totalMinutos / 60;
+            const totalHoras = `${(totalMinutos / 60).toFixed(1)}`;
 
             setHorasAssistidas(totalHoras);
 
