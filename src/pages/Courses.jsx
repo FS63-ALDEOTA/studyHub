@@ -1,16 +1,8 @@
-<<<<<<< HEAD
-import ModuleCard from "../components/ModuleCard";
-=======
+
 // import { Link } from "react-router-dom"
->>>>>>> 5adeb19c36c1945049925d3a22d7b52e37de6284
 import { useState, useEffect } from "react";
-import Banner from "../components/Banner";
-<<<<<<< HEAD
-import AsideCourseContent from "../components/AsideCourseContent";
-=======
-import NavCourse from "./NavCourse";
+import Banner from "../components/Banner.jsx";
 import { Outlet } from "react-router-dom";
->>>>>>> 5adeb19c36c1945049925d3a22d7b52e37de6284
 
 const Courses = () => {
   const [cursosDoUsuario, setCursosDoUsuario] = useState([]);
