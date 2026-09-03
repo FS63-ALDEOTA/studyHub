@@ -1,6 +1,19 @@
+@import url('https://googleapis.com');
+
 @import "tailwindcss";
+
 
 @theme {
     --color-primary: #630ED4;
     --color-secondary: #7C3AED;
+}
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
 }

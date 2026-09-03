@@ -10,26 +10,43 @@ import Configurations from "./pages/Configurations";
 import Favorites from "./pages/Favorites";
 import User from "./pages/User";
 import Home from "./pages/Home";
+import Testes from "./pages/Testes";
+import NavCourse from "./pages/NavCourse";
+import GeneralCourse from "./pages/GeneralCourse";
+import ContentCourse from "./pages/ContentCourse";
+import MaterialCourse from "./pages/MaterialCourse";
+import TestsCourse from "./pages/TestsCourse";
+import CourseDetails from "./pages/CourseDetails";
+
 
 function App() {
 
   return (
     <>
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<LoginPage/>} /> 
-        <Route path="/cadastro" element={<RegisterPage/>} /> 
-        <Route element={<Dashboard/>} > 
-          <Route path="/home" element={<Home/>} /> 
-          <Route path="/meus-cursos" element={<Courses/>} /> 
-          <Route path="/atividades" element={<Activities/>} /> 
-          <Route path="/calendario" element={<Calendar/>} /> 
-          <Route path="/perfil" element={<User/>} /> 
-          <Route path="/favoritos" element={<Favorites/>} /> 
-          <Route path="/configuracoes" element={<Configurations/>} />
-        </Route> 
-      </Routes>
-    </BrowserRouter>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<LoginPage />} />
+          <Route path="/cadastro" element={<RegisterPage />} />
+          <Route element={<Dashboard />} >
+            <Route path="/home" element={<Home />} />
+            <Route path="/meus-cursos" element={<Courses />} >
+              <Route element={<NavCourse />}>
+                <Route index element={<GeneralCourse />} />
+                <Route path="conteudo" element={<ContentCourse />} />
+                <Route path="materiais" element={<MaterialCourse />} />
+                <Route path="avaliacoes" element={<TestsCourse />} />
+              </Route>
+            </Route>
+            <Route path="/meus-cursos/:id" element={<CourseDetails />} />
+            <Route path="/atividades" element={<Activities />} />
+            <Route path="/calendario" element={<Calendar />} />
+            <Route path="/perfil" element={<User />} />
+            <Route path="/favoritos" element={<Favorites />} />
+            <Route path="/configuracoes" element={<Configurations />} />
+            <Route path="/teste" element={<Testes />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }

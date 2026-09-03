@@ -1,10 +1,18 @@
 
-const Courses = () => {
-  return (
-    <div>
-      <h1>Meus cursos</h1>
-    </div>
-  )
-}
+import Banner from "../components/Banner.jsx";
+import { Outlet } from "react-router-dom";
 
-export default Courses
+const Courses = () => {
+
+  return (
+    <div className=" pb-6">
+  
+      <Banner />
+      <div className="p-4">
+      <Outlet/>
+      </div>
+    </div>
+  );
+};
+
+export default Courses;
