@@ -1,6 +1,7 @@
 // import bgImage from "../assets/banner-bgs/react-do-zero.jpg";
 
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const Banner = () => {
   // const [cursosDoUsuario, setCursosDoUsuario] = useState([]);
@@ -54,6 +55,7 @@ const Banner = () => {
         console.log("Percentual -> ", ProgAtual);
 
         setDados({
+          CursoId: Curso.id,
           CursoNome: Curso.nome,
           CursoProfessor: Curso.professor,
           CursoDuracao: Curso.duracaoHoras,
@@ -91,7 +93,7 @@ const Banner = () => {
 
   return (
     <>
-      <div className="w-full  p-1 flex flex-col">
+      <div className="w-full flex flex-col">
         <div
           className="flex flex-col relative p-10 items-start bg-cover bg-top overflow-hidden"
           style={{ backgroundImage: `url(${imagemLocalUrl})` }}
@@ -109,7 +111,7 @@ const Banner = () => {
           </div>
 
           <div className="text-white font-bold text-5xl py-10">
-            <h1>{dados.nome} </h1>
+            <h1>{dados.CursoNome}</h1>
           </div>
 
           <div className="flex">
@@ -138,7 +140,7 @@ const Banner = () => {
           <div className="w-full flex-1">
             <div className="text-white font-bold mt-6 flex justify-between w-100">
               <p> Seu progresso</p>
-              <span>{dados.CursoProg}%</span>
+              <span>{dados.CursoProg.toFixed(2)}%</span>
             </div>
             <div className="flex items-baseline">
               <div className="w-100 bg-white/20 h-2.5 rounded-full overflow-hidden backdrop-blur-sm">
@@ -147,10 +149,10 @@ const Banner = () => {
                   style={{ width: `${dados.CursoProg}%` }}
                 />
               </div>
-              <button className="ml-10 w-full md:w-auto px-6 py-2 bg-white text-[#630ED4] font-bold text-sm rounded-xl transition-all shadow-lg hover:bg-slate-50 active:scale-95 flex items-center justify-center gap-2 whitespace-nowrap cursor-pointer">
+              <Link to={`/meus-cursos/${dados.CursoId}`} className="ml-10 w-full md:w-auto px-6 py-2 bg-white text-[#630ED4] font-bold text-sm rounded-xl transition-all shadow-lg hover:bg-slate-50 active:scale-95 flex items-center justify-center gap-2 whitespace-nowrap cursor-pointer">
                 Continuar curso
                 <span className="text-base font-normal">→</span>
-              </button>
+              </Link>
             </div>
           </div>
         </div>

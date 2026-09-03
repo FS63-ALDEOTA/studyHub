@@ -1,19 +1,16 @@
-// import { Link } from "react-router-dom"
-import { useState, useEffect } from "react";
 
+import Banner from "../components/Banner.jsx";
+import { Outlet } from "react-router-dom";
 
-import AsideCourseContent from "../components/AsideCourseContent"
-import NavCourse from "./NavCourse";
-
+const Courses = () => {
 
   return (
-    <div className="border-b-2 border-[#CCC3D8] pl-6 pb-6">
-      <NavCourse/>
-      <h1>Meus cursos</h1>
-   
-      <<Banner dados={cursosDoUsuario[1]} />
-      >
-      <AsideCourseContent/>
+    <div className=" pb-6">
+  
+      <Banner />
+      <div className="p-4">
+      <Outlet/>
+      </div>
     </div>
   );
 };

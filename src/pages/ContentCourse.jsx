@@ -1,9 +1,10 @@
-// import React from 'react'
+import ModuleCard from "../components/ModuleCard"
+
 
 export default function ContentCourse() {
   return (
     <>
-    <h1>Conteúdo do curso</h1>
+   <ModuleCard/>
     </>
   )
 }
