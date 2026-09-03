@@ -1,10 +1,45 @@
-
+import { useState } from "react";
 import Imagem from "../assets/Imagem-Login.jpg";
 import iconeEmail from "../assets/icone-email.svg";
 import iconeSenha from "../assets/icone-senha.svg";
 import { Logo } from "../components/Logo";
+import { useNavigate } from "react-router-dom";
 
 function LoginPage() {
+  const [email, setEmail] = useState("")
+  const [senha, setSenha] = useState("")
+
+  const navigate = useNavigate()
+
+  function handleLogin(e) {
+
+    e.preventDefault()
+    console.log(email)
+    console.log(senha)
+
+    if (!email || !senha) {
+      alert("Email e senha são obrigatórios")
+      return
+    }
+    console.log("Continuei na função")
+
+    fetch("http://localhost:3000/usuarios")
+      .then(res => res.json())
+      .then(dados => {
+        console.log(dados)
+        const user = dados.find((user) => {
+          return user.email == email && user.senha == senha
+        })
+        if (!user) {
+          alert("Email ou senha incorretos!")
+          return
+        }
+        navigate("/home")
+      })
+      .catch()
+
+  }
+
   return (
     <>
       <main className="flex h-screen">
@@ -57,7 +92,7 @@ function LoginPage() {
               </p>
             </div>
 
-            <form className="flex flex-col gap-4 mt-4">
+            <form onSubmit={handleLogin} className="flex flex-col gap-4 mt-4">
               <div>
                 <label htmlFor="emailLogin">E-mail</label>
                 <div className="flex items-center gap-2 border border-[#d9d9db] rounded-xl px-3">
@@ -67,6 +102,8 @@ function LoginPage() {
                     id="emailLogin"
                     type="email"
                     placeholder="nome@exemplo.com"
+                    onChange={(e) => setEmail(e.target.value)}
+                    value={email}
                   />
                 </div>
               </div>
@@ -80,6 +117,8 @@ function LoginPage() {
                     id="senhaLogin"
                     type="password"
                     placeholder="****"
+                    onChange={(e) => setSenha(e.target.value)}
+                    value={senha}
                   />
                 </div>
               </div>
