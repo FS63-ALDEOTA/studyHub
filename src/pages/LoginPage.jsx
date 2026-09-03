@@ -3,7 +3,6 @@ import Imagem from "../assets/Imagem-Login.jpg";
 import iconeEmail from "../assets/icone-email.svg";
 import iconeSenha from "../assets/icone-senha.svg";
 import { Logo } from "../components/Logo";
-import SummaryCard from "../components/SummaryCard";
 
 function LoginPage() {
   return (
@@ -112,7 +111,6 @@ function LoginPage() {
             </p>
           </div>
         </section>
-        <SummaryCard/>
       </main>
     </>
   );
