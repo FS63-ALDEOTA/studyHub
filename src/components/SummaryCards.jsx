@@ -3,7 +3,7 @@ const SummaryCards = ({ title, subtitle, icon: Icon, colorBgIcon, colorIcon }) =
  
 
 return (
-    <div className="p-6 border border-[#CCC3D84D] rounded-xl flex items-center w-58 shadow-[0px_1px_2px_0px_#0000000D]">
+    <div className="p-6 border border-[#CCC3D84D] rounded-xl flex items-center w-full h-30 shadow-[0px_1px_2px_0px_#0000000D]">
 
         <div
             className="h-12 w-10.5 rounded-xl flex items-center justify-center mr-3"
