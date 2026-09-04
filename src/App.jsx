@@ -17,6 +17,7 @@ import ContentCourse from "./pages/ContentCourse";
 import MaterialCourse from "./pages/MaterialCourse";
 import TestsCourse from "./pages/TestsCourse";
 import CourseDetails from "./pages/CourseDetails";
+import { AuthProvider } from "./context/AuthContext";
 
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
   return (
     <>
       <BrowserRouter>
+      <AuthProvider>
         <Routes>
           <Route path="/" element={<LoginPage />} />
           <Route path="/cadastro" element={<RegisterPage />} />
@@ -46,6 +48,7 @@ function App() {
             <Route path="/teste" element={<Testes />} />
           </Route>
         </Routes>
+      </AuthProvider>
       </BrowserRouter>
     </>
   );

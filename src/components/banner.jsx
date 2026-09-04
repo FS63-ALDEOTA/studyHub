@@ -1,22 +1,21 @@
 // import bgImage from "../assets/banner-bgs/react-do-zero.jpg";
 
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
 
 const Banner = () => {
   // const [cursosDoUsuario, setCursosDoUsuario] = useState([]);
   const [dados, setDados] = useState(null);
-
-  useEffect(() => {
+  const {usuario} = useContext(AuthContext)
+  const usuarioId = usuario.id;
+    useEffect(() => {
     const carregarDados = async () => {
       try {
         // const IdUserLog = localStorage.getItem("id");
-        const IdUserLog = "1";
-
-        console.log(IdUserLog);
 
         const resMatriculas = await fetch(
-          `http://localhost:3000/matriculas?usuarioId=${IdUserLog}`,
+          `http://localhost:3000/matriculas?usuarioId=${usuarioId}`,
         );
         const matriculas = await resMatriculas.json();
         console.log("matriculas");
