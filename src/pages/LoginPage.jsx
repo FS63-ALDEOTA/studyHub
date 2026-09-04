@@ -1,18 +1,20 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Imagem from "../assets/Imagem-Login.jpg";
 import iconeEmail from "../assets/icone-email.svg";
 import iconeSenha from "../assets/icone-senha.svg";
 import { Logo } from "../components/Logo";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
 
 function LoginPage() {
   const [email, setEmail] = useState("")
   const [senha, setSenha] = useState("")
 
-  const navigate = useNavigate()
+  const {login, usuario} = useContext(AuthContext)
+  console.log(usuario)
 
-  function handleLogin(e) {
-
+  if (usuario) return <Navigate to={"/home"}/>
+  async function handleLogin(e) {
     e.preventDefault()
     console.log(email)
     console.log(senha)
@@ -23,21 +25,10 @@ function LoginPage() {
     }
     console.log("Continuei na função")
 
-    fetch("http://localhost:3000/usuarios")
-      .then(res => res.json())
-      .then(dados => {
-        console.log(dados)
-        const user = dados.find((user) => {
-          return user.email == email && user.senha == senha
-        })
-        if (!user) {
-          alert("Email ou senha incorretos!")
-          return
-        }
-        navigate("/home")
-      })
-      .catch()
 
+    const usuario = await login(email, senha)
+    console.log("usuariologin",usuario)
+    if (usuario) return <Navigate to={"/home"}/>
   }
 
   return (

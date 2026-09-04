@@ -1,17 +1,19 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { DownloadSimpleIcon, CaretDownIcon } from "@phosphor-icons/react";
 import { useParams } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
 
 function AsideCourseContent() {
-
   const { id } = useParams()
   const cursoId = id;
-  const usuarioId = 1;
   const [modulos, setModulos] = useState([]);
   const [progresso, setProgresso] = useState([]);
   const [carregando, setCarregando] = useState(true);
   const [erro, setErro] = useState("");
 
+
+  const {usuario} = useContext(AuthContext)
+  const usuarioId = usuario.id;
   useEffect(() => {
     const carregarConteudo = async () => {
       try {

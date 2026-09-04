@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import SummaryCards from "../components/SummaryCards"
 import {
   BookOpenCheck,
@@ -6,6 +6,7 @@ import {
   FilePlay,
   Clock
 } from "lucide-react"
+import { AuthContext } from "../context/AuthContext"
 
 const Home = () => {
   const [qtdMatricula, setQtdMatricula] = useState(0)
@@ -13,9 +14,10 @@ const Home = () => {
   const [qtdAulasConcluidas, setQtdAulasConcluidas] = useState(0)
   const [HorasAssistidas, setHorasAssistidas] = useState(0)
 
+  const {usuario} = useContext(AuthContext)
 
   useEffect(() => {
-    fetch("http://localhost:3000/matriculas?usuarioId=1")
+    fetch(`http://localhost:3000/matriculas?usuarioId=${usuario.id}`)
       .then(res => res.json())
       .then(dados => {
         setQtdMatricula(dados.filter((matricula) => {
